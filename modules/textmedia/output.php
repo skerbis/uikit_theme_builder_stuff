@@ -4,8 +4,12 @@
  * Flexibles Layout für Text und Medien-Kombinationen
  */
 
-// Backend UIKit Assets laden
-UIKitHelper::loadBackendAssets();
+/**
+ * Text & Medien - Output Template mit MBlock
+ * Flexibles Layout für Text und Medien-Kombinationen
+ */
+
+use UikitThemeBuilder\ThemeHelper;
 
 // MBlock Daten abrufen
 $textMediaBlocks = rex_var::toArray("REX_VALUE[1]");
@@ -18,7 +22,7 @@ $padding = $settings['padding'] ?? 'uk-padding';
 $container = $settings['container'] ?? '';
 $gap = $settings['gap'] ?? 'uk-margin-medium';
 
-$textColorClass = UIKitHelper::getTextColorForBackground($backgroundStyle);
+$textColorClass = ThemeHelper::getTextColorForBackground($backgroundStyle);
 
 // Medien-Funktionen jetzt in UIKitHelper-Klasse
 
@@ -26,7 +30,7 @@ $textColorClass = UIKitHelper::getTextColorForBackground($backgroundStyle);
 if (!empty($textMediaBlocks) && is_array($textMediaBlocks)):
 
 // Backend Wrapper
-echo UIKitHelper::backendWrapper(true);
+echo ThemeHelper::backendWrapper(true);
 ?>
 
 <div class="<?= !empty($backgroundStyle) ? $backgroundStyle : '' ?> <?= !empty($padding) ? $padding : '' ?> uk-margin-medium">
