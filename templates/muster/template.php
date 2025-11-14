@@ -5,6 +5,7 @@
  * DOMAIN_SETTINGS:
  * tm_uikit_theme: uikit_theme_select|UIKit Theme|default|Welches UIKit Theme soll verwendet werden?
  * tm_logo: media|Logo|logo.svg|Logo für Header und Footer
+ * tm_banner_id: banner_select|Header Banner||Optional: Banner nach der Navbar anzeigen
  * tm_logo_text: text|Logo Alt-Text|Meine Firma|Alternativer Text für das Logo
  * tm_logo_white: media|Logo Weiß|logo_white.svg|Weißes Logo für dunkle Hintergründe
  * tm_slogan: text|Slogan||Slogan im Footer
@@ -21,7 +22,7 @@
  * tm_footer_section2_title: text|Footer Spalte 2 Titel|Service|Überschrift zweite Footer-Spalte  
  * tm_footer_section2_links: linklist|Footer Spalte 2 Links||Artikel-Links für zweite Footer-Spalte
  * tm_footer_section3_title: text|Footer Spalte 3 Titel|Kontakt|Überschrift dritte Footer-Spalte
- * tm_footer_section3_text: textarea|Footer Spalte 3 Text||Kontakt-Informationen
+ * tm_footer_section3_text: cke5|Footer Spalte 3 Text||Kontakt-Informationen
  */
 
 use FriendsOfRedaxo\TemplateManager\TemplateManager;
@@ -184,6 +185,9 @@ $slogan = TemplateManager::get('tm_slogan', '');
 $firma = TemplateManager::get('tm_firma', 'Meine Firma');
 $navbarSticky = TemplateManager::get('tm_navbar_sticky', '1');
 
+// Banner Einstellung
+$bannerId = TemplateManager::get('tm_banner_id', '');
+
 // CTA Button Einstellungen
 $ctaEnabled = TemplateManager::get('tm_cta_enabled', '1');
 $ctaText = TemplateManager::get('tm_cta_text', 'Kontakt');
@@ -216,7 +220,7 @@ $section2Title = TemplateManager::get('tm_footer_section2_title', 'Service');
 $section2Links = generateFooterSection(TemplateManager::get('tm_footer_section2_links', ''));
 
 $section3Title = TemplateManager::get('tm_footer_section3_title', 'Kontakt');
-$section3Text = TemplateManager::get('tm_footer_section3_content', '');
+$section3Text = TemplateManager::get('tm_footer_section3_text', '');
 
 // Breadcrumb-Funktion mit navigation_array
 if (!function_exists('buildBreadcrumb')) {
@@ -349,6 +353,17 @@ if (!function_exists('buildBreadcrumb')) {
     </div>
     <?php endif; ?>
 </header>
+
+<!-- Optional: Banner nach Navbar -->
+<?php 
+if (!empty($bannerId) && is_numeric($bannerId)) {
+    // Prüfen ob UIKit Banner Design Addon installiert und verfügbar ist
+    $bannerAddon = rex_addon::get('uikit_banner_design');
+    if ($bannerAddon->isInstalled() && $bannerAddon->isAvailable()) {
+        echo \UikitBannerRenderer::render((int)$bannerId);
+    }
+}
+?>
 
 <!-- Mobile Navigation Offcanvas -->
 <div id="mobile-nav" 
