@@ -10,13 +10,17 @@ $container_width_array = rex_var::toArray("REX_VALUE[9]");
 $container_width = !empty($container_width_array) ? $container_width_array[0] : ['container' => 'uk-container'];
 $style_array = rex_var::toArray("REX_VALUE[6]");
 $style = !empty($style_array) ? $style_array[0] : ['style' => ''];
+$padding_array = rex_var::toArray("REX_VALUE[14]");
+$padding = !empty($padding_array) ? $padding_array[0] : ['padding' => ''];
+$width_array = rex_var::toArray("REX_VALUE[15]");
+$width = !empty($width_array) ? $width_array[0] : ['width' => ''];
 
 $bgimage ='';
 if ('REX_MEDIA[1]'!='') {
     $bgimage = 'style="background-image: url(/media/REX_MEDIA[1])" ';
 }
 ?>
-<section <?php if (isset($bgimage)) echo $bgimage; ?> data-uk-parallax="bgy: -200" class="REX_VALUE[15]uk-section uk-background-cover uk-preserve-color uk-background-<?php echo $rexColorVars['ukcolor'] ?? ''?> REX_VALUE[14]">
+<section <?php if (isset($bgimage)) echo $bgimage; ?> data-uk-parallax="bgy: -200" class="<?php echo $width['width']; ?>uk-section uk-background-cover uk-preserve-color uk-background-<?php echo $rexColorVars['ukcolor'] ?? ''?><?php echo $padding['padding']; ?>">
 <?php echo '<div class="'.$container_width['container'].' ">'; ?>
 
 <?php
