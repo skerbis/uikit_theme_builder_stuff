@@ -164,10 +164,14 @@ $main = MForm::factory()
     // Sektions-Einstellungen
     ->addTabElement('<i class="fas fa-layer-group"></i> Sektion', MForm::factory()
         ->addSelectField("9.0.container", [
-            'uk-container uk-container-large' => 'Standard (weit)',
-            'uk-container ' => 'schmal',
-            '' => 'volle Breite'
-        ])->setLabel('<i class="fas fa-expand-arrows-alt"></i> Container-Breite')->setAttribute('class', 'selectpicker')->setDefaultValue('uk-container ')
+            'uk-container' => 'Standard',
+            'uk-container uk-container-xsmall' => 'Extra schmal (xsmall)',
+            'uk-container uk-container-small' => 'Schmal (small)',
+            'uk-container uk-container-large' => 'Weit (large)',
+            'uk-container uk-container-xlarge' => 'Extra weit (xlarge)',
+            'uk-container uk-container-expand' => 'Maximale Breite (expand)',
+            '' => 'Volle Breite (kein Container)'
+        ])->setLabel('<i class="fas fa-expand-arrows-alt"></i> Container-Breite')->setAttribute('class', 'selectpicker')->setDefaultValue('uk-container')
 
         ->addMediaField(1, ['label' => '<i class="fas fa-image"></i> Hintergrundbild'])
 
@@ -176,16 +180,17 @@ $main = MForm::factory()
             'label' => '<i class="fas fa-palette"></i> Hintergrundfarbe:'
         ])
 
-        ->addSelectField(14, [
-             ' uk-padding-remove' => 'Standard keine',
-            ' uk-padding-small' => 'Mittel',
-            ' uk-padding-remove-top' => 'Füllung oben entfernen',
-            ' uk-padding-remove-bottom' => 'Füllung unten entfernen',
-            ' uk-padding-large' => 'groß',
+        ->addSelectField("14.0.padding", [
             '' => 'Sektions-Standard',
-        ], ['label' => '<i class="fas fa-arrows-alt-v"></i> Abschnittsfüllung', 'class' => 'selectpicker', 'default-value' => '  uk-padding-remove'])
+            ' uk-padding-remove' => 'Keine Füllung',
+            ' uk-padding-small' => 'Klein',
+            ' uk-padding' => 'Mittel',
+            ' uk-padding-large' => 'Groß',
+            ' uk-padding-remove-top' => 'Füllung oben entfernen',
+            ' uk-padding-remove-bottom' => 'Füllung unten entfernen'
+        ], ['label' => '<i class="fas fa-arrows-alt-v"></i> Abschnittsfüllung', 'class' => 'selectpicker', 'default-value' => ''])
 
-        ->addSelectField(15, [
+        ->addSelectField("15.0.width", [
             '' => 'Standard',
             'full-width ' => 'Volle Bildschirmbreite'
         ], ['label' => '<i class="fas fa-arrows-alt-h"></i> Abschnittsbreite', 'class' => 'selectpicker'])
