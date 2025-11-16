@@ -3,7 +3,6 @@
  * Standard Template mit Template Manager Integration
  * 
  * DOMAIN_SETTINGS:
- * tm_uikit_theme: uikit_theme_select|UIKit Theme|default|Welches UIKit Theme soll verwendet werden?
  * tm_logo: media|Logo|logo.svg|Logo für Header und Footer
  * tm_banner_id: banner_select|Header Banner||Optional: Banner nach der Navbar anzeigen
  * tm_logo_text: text|Logo Alt-Text|Meine Firma|Alternativer Text für das Logo
