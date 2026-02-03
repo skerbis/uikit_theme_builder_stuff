@@ -314,6 +314,36 @@ $mform = MForm::factory()
                     </svg>
                 '),
                 'label' => 'Slideshow Gallery (Thumbs unten)'
+            ],
+            'slideshow-gallery-left' => [
+                'img' => "data:image/svg+xml;base64," . base64_encode('
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 50" width="50" height="42">
+                        <rect width="60" height="50" fill="#f8f8f8" stroke="#333" stroke-width="1.5"/>
+                        <rect x="3" y="3" width="10" height="44" fill="#ccc"/>
+                        <rect x="16" y="3" width="41" height="44" fill="#666"/>
+                    </svg>
+                '),
+                'label' => 'Slideshow Gallery (Thumbs links)'
+            ],
+            'slideshow-gallery-right' => [
+                'img' => "data:image/svg+xml;base64," . base64_encode('
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 50" width="50" height="42">
+                        <rect width="60" height="50" fill="#f8f8f8" stroke="#333" stroke-width="1.5"/>
+                        <rect x="47" y="3" width="10" height="44" fill="#ccc"/>
+                        <rect x="3" y="3" width="41" height="44" fill="#666"/>
+                    </svg>
+                '),
+                'label' => 'Slideshow Gallery (Thumbs rechts)'
+            ],
+            'slideshow-gallery-bottom-scroll' => [
+                'img' => "data:image/svg+xml;base64," . base64_encode('
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 50" width="50" height="42">
+                        <rect width="60" height="50" fill="#f8f8f8" stroke="#333" stroke-width="1.5"/>
+                        <rect x="3" y="3" width="54" height="30" fill="#666"/>
+                        <rect x="3" y="35" width="54" height="10" fill="#ccc"/>
+                    </svg>
+                '),
+                'label' => 'Slideshow Gallery (Thumbs Scroll)'
             ]
         ], ['label' => '<i class="fas fa-images"></i> Mehrere Medien als:'])
         
