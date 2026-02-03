@@ -4,11 +4,6 @@
  * Flexibles Layout für Text und Medien-Kombinationen
  */
 
-/**
- * Text & Medien - Output Template mit MBlock
- * Flexibles Layout für Text und Medien-Kombinationen
- */
-
 use UikitThemeBuilder\ThemeHelper;
 
 // MBlock Daten abrufen
@@ -23,8 +18,6 @@ $container = $settings['container'] ?? '';
 $gap = $settings['gap'] ?? 'uk-margin-medium';
 
 $textColorClass = ThemeHelper::getTextColorForBackground($backgroundStyle);
-
-// Medien-Funktionen jetzt in UIKitHelper-Klasse
 
 // Nur ausgeben wenn Blöcke vorhanden
 if (!empty($textMediaBlocks) && is_array($textMediaBlocks)):
@@ -56,8 +49,6 @@ echo ThemeHelper::backendWrapper(true);
             $textWidth = $block['text_width'] ?? 'uk-width-1-2@m';
             $mediaCenter = isset($block['media_center']) && $block['media_center'] === '1';
             $multiMediaDisplay = $block['multi_media_display'] ?? 'masonry';
-            $slideshowAutoplay = isset($block['slideshow_autoplay']) && $block['slideshow_autoplay'] === '1';
-            $slideshowDelay = $block['slideshow_delay'] ?? '5000';
             $headingLevel = $block['heading_level'] ?? 'h3';
             $headingStyle = $block['heading_style'] ?? 'uk-heading-medium';
             $subtitleStyle = $block['subtitle_style'] ?? 'uk-text-lead uk-text-large';
@@ -155,99 +146,7 @@ echo ThemeHelper::backendWrapper(true);
                     <?php endif; ?>
                     
                     <?php if (!empty($mediaList)): ?>
-                        <?= UIKitHelper::renderMediaContent($mediaList, $multiMediaDisplay, $mediaCaption, $badgeText, $enableLightbox, $textColorClass, $layout, $slideshowAutoplay, $slideshowDelay) ?>
-                    <?php endif; ?>
-                    
-                <?php elseif ($layout === 'media-top-text-bottom'): ?>
-                    <!-- Medien oben, Text unten Layout -->
-                    <?php if (!empty($title) || !empty($subtitle)): ?>
-                        <div class="<?= $titleMargin ?> <?= $textAlign ?>">
-                            <?php if (!empty($title)): ?>
-                                <?php 
-                                $titleClasses = [];
-                                if (!empty($headingStyle)) $titleClasses[] = $headingStyle;
-                                if ($titleHandwriting) $titleClasses[] = 'uk-text-handwriting';
-                                if ($titleSlanted) $titleClasses[] = 'uk-text-slanted';
-                                $titleClasses[] = $textColorClass;
-                                
-                                $titleClassString = !empty($titleClasses) ? ' class="' . implode(' ', $titleClasses) . '"' : '';
-                                ?>
-                                <<?= $headingLevel ?><?= $titleClassString ?>><?= htmlspecialchars($title) ?></<?= $headingLevel ?>>
-                            <?php endif; ?>
-                            
-                            <?php if (!empty($subtitle)): ?>
-                                <?php 
-                                $subtitleClasses = [];
-                                if (!empty($subtitleStyle)) $subtitleClasses[] = $subtitleStyle;
-                                if ($subtitleHandwriting) $subtitleClasses[] = 'uk-text-handwriting';
-                                if ($subtitleSlanted) $subtitleClasses[] = 'uk-text-slanted';
-                                $subtitleClasses[] = $textColorClass === 'uk-light' ? 'uk-light' : 'uk-text-muted';
-                                
-                                $subtitleClassString = !empty($subtitleClasses) ? ' class="' . implode(' ', $subtitleClasses) . '"' : '';
-                                ?>
-                                <p<?= $subtitleClassString ?> style="margin-top: -0.5rem !important;">
-                                    <?= htmlspecialchars($subtitle) ?>
-                                </p>
-                            <?php endif; ?>
-                        </div>
-                    <?php endif; ?>
-                    
-                    <?php if (!empty($mediaList)): ?>
-                        <div class="uk-margin-medium">
-                            <?= UIKitHelper::renderMediaContent($mediaList, $multiMediaDisplay, $mediaCaption, $badgeText, $enableLightbox, $textColorClass, $layout, $slideshowAutoplay, $slideshowDelay) ?>
-                        </div>
-                    <?php endif; ?>
-                    
-                    <?php if (!empty($content)): ?>
-                        <div class="uk-text-default <?= $textColorClass ?>">
-                            <?= $content ?>
-                        </div>
-                    <?php endif; ?>
-                    
-                <?php elseif ($layout === 'text-top-media-bottom'): ?>
-                    <!-- Text oben, Medien unten Layout -->
-                    <?php if (!empty($title) || !empty($subtitle)): ?>
-                        <div class="<?= $titleMargin ?> <?= $textAlign ?>">
-                            <?php if (!empty($title)): ?>
-                                <?php 
-                                $titleClasses = [];
-                                if (!empty($headingStyle)) $titleClasses[] = $headingStyle;
-                                if ($titleHandwriting) $titleClasses[] = 'uk-text-handwriting';
-                                if ($titleSlanted) $titleClasses[] = 'uk-text-slanted';
-                                $titleClasses[] = $textColorClass;
-                                
-                                $titleClassString = !empty($titleClasses) ? ' class="' . implode(' ', $titleClasses) . '"' : '';
-                                ?>
-                                <<?= $headingLevel ?><?= $titleClassString ?>><?= htmlspecialchars($title) ?></<?= $headingLevel ?>>
-                            <?php endif; ?>
-                            
-                            <?php if (!empty($subtitle)): ?>
-                                <?php 
-                                $subtitleClasses = [];
-                                if (!empty($subtitleStyle)) $subtitleClasses[] = $subtitleStyle;
-                                if ($subtitleHandwriting) $subtitleClasses[] = 'uk-text-handwriting';
-                                if ($subtitleSlanted) $subtitleClasses[] = 'uk-text-slanted';
-                                $subtitleClasses[] = $textColorClass === 'uk-light' ? 'uk-light' : 'uk-text-muted';
-                                
-                                $subtitleClassString = !empty($subtitleClasses) ? ' class="' . implode(' ', $subtitleClasses) . '"' : '';
-                                ?>
-                                <p<?= $subtitleClassString ?> style="margin-top: -0.5rem !important;">
-                                    <?= htmlspecialchars($subtitle) ?>
-                                </p>
-                            <?php endif; ?>
-                        </div>
-                    <?php endif; ?>
-                    
-                    <?php if (!empty($content)): ?>
-                        <div class="uk-text-default <?= $textColorClass ?>">
-                            <?= $content ?>
-                        </div>
-                    <?php endif; ?>
-                    
-                    <?php if (!empty($mediaList)): ?>
-                        <div class="uk-margin-medium">
-                            <?= UIKitHelper::renderMediaContent($mediaList, $multiMediaDisplay, $mediaCaption, $badgeText, $enableLightbox, $textColorClass, $layout, $slideshowAutoplay, $slideshowDelay) ?>
-                        </div>
+                        <?= ThemeHelper::renderMediaContent($mediaList, $multiMediaDisplay, $mediaCaption, $badgeText, $enableLightbox, $textColorClass, $layout) ?>
                     <?php endif; ?>
                     
                 <?php else: ?>
@@ -297,7 +196,7 @@ echo ThemeHelper::backendWrapper(true);
                             
                             <?php if (!empty($mediaList)): ?>
                                 <div class="<?= $mediaWidth ?>">
-                                    <?= UIKitHelper::renderMediaContent($mediaList, $multiMediaDisplay, $mediaCaption, $badgeText, $enableLightbox, $textColorClass, $layout, $slideshowAutoplay, $slideshowDelay) ?>
+                                    <?= ThemeHelper::renderMediaContent($mediaList, $multiMediaDisplay, $mediaCaption, $badgeText, $enableLightbox, $textColorClass, $layout) ?>
                                 </div>
                             <?php endif; ?>
                             
@@ -305,7 +204,7 @@ echo ThemeHelper::backendWrapper(true);
                             <!-- Medien links, Text rechts -->
                             <?php if (!empty($mediaList)): ?>
                                 <div class="<?= $mediaWidth ?>">
-                                    <?= UIKitHelper::renderMediaContent($mediaList, $multiMediaDisplay, $mediaCaption, $badgeText, $enableLightbox, $textColorClass, $layout, $slideshowAutoplay, $slideshowDelay) ?>
+                                    <?= ThemeHelper::renderMediaContent($mediaList, $multiMediaDisplay, $mediaCaption, $badgeText, $enableLightbox, $textColorClass, $layout) ?>
                                 </div>
                             <?php endif; ?>
                             
@@ -330,6 +229,6 @@ echo ThemeHelper::backendWrapper(true);
 
 <?php 
 // Backend Wrapper schließen
-echo UIKitHelper::backendWrapper(false);
+echo ThemeHelper::backendWrapper(false);
 
 endif; // Ende: if (!empty($textMediaBlocks))
