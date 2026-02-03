@@ -312,7 +312,20 @@ $mform = MForm::factory()
                         <rect x="48" y="32" width="7" height="7" fill="#ccc"/>
                     </svg>
                 '),
-                'label' => 'Slideshow (Vertikale Thumbs)'
+                'label' => 'Slideshow (Thumbs Rechts)'
+            ],
+            'slideshow-vertical-left' => [
+                'img' => "data:image/svg+xml;base64," . base64_encode('
+                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 50" width="50" height="42">
+                        <rect width="60" height="50" fill="#f8f8f8" stroke="#333" stroke-width="1.5"/>
+                        <rect x="5" y="5" width="7" height="7" fill="#999"/>
+                        <rect x="5" y="14" width="7" height="7" fill="#ccc"/>
+                        <rect x="5" y="23" width="7" height="7" fill="#ccc"/>
+                        <rect x="5" y="32" width="7" height="7" fill="#ccc"/>
+                        <rect x="15" y="5" width="40" height="40" fill="#666"/>
+                    </svg>
+                '),
+                'label' => 'Slideshow (Thumbs Links)'
             ],
             'slideshow-horizontal' => [
                 'img' => "data:image/svg+xml;base64," . base64_encode('
