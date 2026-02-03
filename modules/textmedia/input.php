@@ -301,56 +301,19 @@ $mform = MForm::factory()
                 '),
                 'label' => 'Standard Slideshow'
             ],
-            'slideshow-vertical' => [
-                'img' => "data:image/svg+xml;base64," . base64_encode('
-                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 50" width="50" height="42">
-                        <rect width="60" height="50" fill="#f8f8f8" stroke="#333" stroke-width="1.5"/>
-                        <rect x="5" y="5" width="40" height="40" fill="#666"/>
-                        <rect x="48" y="5" width="7" height="7" fill="#999"/>
-                        <rect x="48" y="14" width="7" height="7" fill="#ccc"/>
-                        <rect x="48" y="23" width="7" height="7" fill="#ccc"/>
-                        <rect x="48" y="32" width="7" height="7" fill="#ccc"/>
-                    </svg>
-                '),
-                'label' => 'Slideshow (Thumbs Rechts)'
-            ],
-            'slideshow-vertical-left' => [
-                'img' => "data:image/svg+xml;base64," . base64_encode('
-                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 50" width="50" height="42">
-                        <rect width="60" height="50" fill="#f8f8f8" stroke="#333" stroke-width="1.5"/>
-                        <rect x="5" y="5" width="7" height="7" fill="#999"/>
-                        <rect x="5" y="14" width="7" height="7" fill="#ccc"/>
-                        <rect x="5" y="23" width="7" height="7" fill="#ccc"/>
-                        <rect x="5" y="32" width="7" height="7" fill="#ccc"/>
-                        <rect x="15" y="5" width="40" height="40" fill="#666"/>
-                    </svg>
-                '),
-                'label' => 'Slideshow (Thumbs Links)'
-            ],
-            'slideshow-horizontal' => [
-                'img' => "data:image/svg+xml;base64," . base64_encode('
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 50" width="50" height="42">
-                        <rect width="60" height="50" fill="#f8f8f8" stroke="#333" stroke-width="1.5"/>
-                        <rect x="5" y="5" width="50" height="30" fill="#666"/>
-                        <rect x="5" y="38" width="10" height="8" fill="#999"/>
-                        <rect x="18" y="38" width="10" height="8" fill="#ccc"/>
-                        <rect x="31" y="38" width="10" height="8" fill="#ccc"/>
-                        <rect x="44" y="38" width="10" height="8" fill="#ccc"/>
-                    </svg>
-                '),
-                'label' => 'Slideshow (Horizontale Thumbs)'
-            ],
             'slideshow-gallery' => [
                 'img' => "data:image/svg+xml;base64," . base64_encode('
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 50" width="50" height="42">
+                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 50" width="50" height="42">
                         <rect width="60" height="50" fill="#f8f8f8" stroke="#333" stroke-width="1.5"/>
-                        <rect x="5" y="5" width="35" height="40" fill="#666"/>
-                        <rect x="43" y="5" width="12" height="12" fill="#999"/>
-                        <rect x="43" y="19" width="12" height="12" fill="#ccc"/>
-                        <rect x="43" y="33" width="12" height="12" fill="#ccc"/>
+                        <rect x="5" y="5" width="50" height="30" fill="#666"/>
+                        <rect x="5" y="38" width="8" height="6" fill="#999"/>
+                        <rect x="15" y="38" width="8" height="6" fill="#ccc"/>
+                        <rect x="25" y="38" width="8" height="6" fill="#ccc"/>
+                        <rect x="35" y="38" width="8" height="6" fill="#ccc"/>
+                        <rect x="45" y="38" width="8" height="6" fill="#ccc"/>
                     </svg>
                 '),
-                'label' => 'Slideshow Gallery (Scrollable Left)'
+                'label' => 'Slideshow Gallery (Thumbs unten)'
             ]
         ], ['label' => '<i class="fas fa-images"></i> Mehrere Medien als:'])
         
