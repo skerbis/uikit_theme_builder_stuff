@@ -115,6 +115,30 @@ $mform = MForm::factory()
                 '),
                 'label' => 'Medien links, Text rechts'
             ],
+            'text-bottom-media-top' => [
+                'img' => "data:image/svg+xml;base64," . base64_encode('
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 80" width="120" height="80">
+                        <rect width="120" height="80" fill="#f8f8f8" stroke="#333" stroke-width="2"/>
+                        <rect x="5" y="5" width="110" height="40" fill="#666"/>
+                        <line x1="10" y1="52" x2="110" y2="52" stroke="#999" stroke-width="2"/>
+                        <line x1="10" y1="60" x2="110" y2="60" stroke="#ccc" stroke-width="1.5"/>
+                        <line x1="10" y1="67" x2="100" y2="67" stroke="#ccc" stroke-width="1.5"/>
+                    </svg>
+                '),
+                'label' => 'Medien oben, Text unten'
+            ],
+            'text-top-media-bottom' => [
+                'img' => "data:image/svg+xml;base64," . base64_encode('
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 80" width="120" height="80">
+                        <rect width="120" height="80" fill="#f8f8f8" stroke="#333" stroke-width="2"/>
+                        <line x1="10" y1="15" x2="110" y2="15" stroke="#999" stroke-width="2"/>
+                        <line x1="10" y1="23" x2="110" y2="23" stroke="#ccc" stroke-width="1.5"/>
+                        <line x1="10" y1="30" x2="100" y2="30" stroke="#ccc" stroke-width="1.5"/>
+                        <rect x="5" y="40" width="110" height="35" fill="#666"/>
+                    </svg>
+                '),
+                'label' => 'Text oben, Medien unten'
+            ],
             'text-only' => [
                 'img' => "data:image/svg+xml;base64," . base64_encode('
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 80" width="120" height="80">
@@ -273,13 +297,65 @@ $mform = MForm::factory()
                         <circle cx="25" cy="41" r="2.5" fill="#ccc"/>
                         <circle cx="35" cy="41" r="2.5" fill="#ccc"/>
                         <circle cx="45" cy="41" r="2.5" fill="#ccc"/>
-                        <polygon points="12,20 12,28 19,24" fill="#fff" opacity="0.8"/>
                     </svg>
                 '),
-                'label' => 'Slideshow'
+                'label' => 'Standard Slideshow'
+            ],
+            'slideshow-vertical' => [
+                'img' => "data:image/svg+xml;base64," . base64_encode('
+                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 50" width="50" height="42">
+                        <rect width="60" height="50" fill="#f8f8f8" stroke="#333" stroke-width="1.5"/>
+                        <rect x="5" y="5" width="40" height="40" fill="#666"/>
+                        <rect x="48" y="5" width="7" height="7" fill="#999"/>
+                        <rect x="48" y="14" width="7" height="7" fill="#ccc"/>
+                        <rect x="48" y="23" width="7" height="7" fill="#ccc"/>
+                        <rect x="48" y="32" width="7" height="7" fill="#ccc"/>
+                    </svg>
+                '),
+                'label' => 'Slideshow (Vertikale Thumbs)'
+            ],
+            'slideshow-horizontal' => [
+                'img' => "data:image/svg+xml;base64," . base64_encode('
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 50" width="50" height="42">
+                        <rect width="60" height="50" fill="#f8f8f8" stroke="#333" stroke-width="1.5"/>
+                        <rect x="5" y="5" width="50" height="30" fill="#666"/>
+                        <rect x="5" y="38" width="10" height="8" fill="#999"/>
+                        <rect x="18" y="38" width="10" height="8" fill="#ccc"/>
+                        <rect x="31" y="38" width="10" height="8" fill="#ccc"/>
+                        <rect x="44" y="38" width="10" height="8" fill="#ccc"/>
+                    </svg>
+                '),
+                'label' => 'Slideshow (Horizontale Thumbs)'
+            ],
+            'slideshow-gallery' => [
+                'img' => "data:image/svg+xml;base64," . base64_encode('
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 50" width="50" height="42">
+                        <rect width="60" height="50" fill="#f8f8f8" stroke="#333" stroke-width="1.5"/>
+                        <rect x="5" y="5" width="35" height="40" fill="#666"/>
+                        <rect x="43" y="5" width="12" height="12" fill="#999"/>
+                        <rect x="43" y="19" width="12" height="12" fill="#ccc"/>
+                        <rect x="43" y="33" width="12" height="12" fill="#ccc"/>
+                    </svg>
+                '),
+                'label' => 'Slideshow Gallery (Scrollable Left)'
             ]
         ], ['label' => '<i class="fas fa-images"></i> Mehrere Medien als:'])
-    );
+        
+        ->addElement('html', '<hr><div class="uk-alert uk-alert-primary"><i class="fas fa-info-circle"></i> Slideshow Einstellungen (werden nur bei Slideshow-Varianten angewendet)</div>')
+        
+        ->addCheckboxField("$id.0.slideshow_autoplay", ['1' => 'Autoplay aktivieren (Wechsel alle 6 Sekunden)'], ['label' => 'Autoplay'])
+        ->addSelectField("$id.0.slideshow_animation", [
+            'slide' => 'Slide (Schieben)',
+            'fade' => 'Fade (Überblenden)',
+            'scale' => 'Scale (Zoom)',
+            'pull' => 'Pull (Ziehen)',
+            'push' => 'Push (Drücken)'
+        ], ['label' => 'Animation', 'class' => 'selectpicker', 'default-value' => 'slide'])
+        ->addTextField("$id.0.slideshow_ratio", [
+            'label' => 'Seitenverhältnis (Ratio)',
+            'placeholder' => 'z.B. 16:9, 4:3 oder False',
+            'help' => 'Optional. Standard ist meist 16:9 oder angepasst an Inhalt.'
+        ]);
 
 // MBlock erstellen
 $blocks = MBlock::show($id, $mform->show(), [

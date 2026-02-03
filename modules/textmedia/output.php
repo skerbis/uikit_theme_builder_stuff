@@ -56,6 +56,13 @@ echo ThemeHelper::backendWrapper(true);
             $textAlign = $block['text_align'] ?? '';
             $enableLightbox = isset($block['enable_lightbox']) && $block['enable_lightbox'] === '1';
             
+            // Slideshow Options
+            $slideshowOptions = [
+                'autoplay' => isset($block['slideshow_autoplay']) && $block['slideshow_autoplay'] === '1',
+                'animation' => $block['slideshow_animation'] ?? 'slide',
+                'ratio' => $block['slideshow_ratio'] ?? ''
+            ];
+            
             // Media-Width berechnen
             $mediaWidthMap = [
                 'uk-width-1-2@m' => 'uk-width-1-2@m',
@@ -146,9 +153,63 @@ echo ThemeHelper::backendWrapper(true);
                     <?php endif; ?>
                     
                     <?php if (!empty($mediaList)): ?>
-                        <?= ThemeHelper::renderMediaContent($mediaList, $multiMediaDisplay, $mediaCaption, $badgeText, $enableLightbox, $textColorClass, $layout) ?>
+                        <?= ThemeHelper::renderMediaContent($mediaList, $multiMediaDisplay, $mediaCaption, $badgeText, $enableLightbox, $textColorClass, $layout, $slideshowOptions) ?>
                     <?php endif; ?>
                     
+                <?php elseif ($layout === 'text-top-media-bottom'): ?>
+                    <!-- Text oben, Medien unten -->
+                    <?php if (!empty($title) || !empty($subtitle)): ?>
+                        <div class="<?= $titleMargin ?> <?= $textAlign ?>">
+                            <?php if (!empty($title)): ?>
+                                <<?= $headingLevel ?> class="<?= $headingStyle ?> <?= $titleHandwriting ? 'uk-text-handwriting' : '' ?> <?= $titleSlanted ? 'uk-text-slanted' : '' ?> <?= $textColorClass ?>"><?= htmlspecialchars($title) ?></<?= $headingLevel ?>>
+                            <?php endif; ?>
+                            
+                            <?php if (!empty($subtitle)): ?>
+                                <p class="<?= $subtitleStyle ?> <?= $subtitleHandwriting ? 'uk-text-handwriting' : '' ?> <?= $subtitleSlanted ? 'uk-text-slanted' : '' ?> <?= $textColorClass === 'uk-light' ? 'uk-light' : 'uk-text-muted' ?>" style="margin-top: -0.5rem !important;">
+                                    <?= htmlspecialchars($subtitle) ?>
+                                </p>
+                            <?php endif; ?>
+                        </div>
+                    <?php endif; ?>
+                    
+                    <?php if (!empty($content)): ?>
+                        <div class="uk-text-default <?= $textColorClass ?> uk-margin-medium-bottom">
+                            <?= $content ?>
+                        </div>
+                    <?php endif; ?>
+                    
+                    <?php if (!empty($mediaList)): ?>
+                        <?= ThemeHelper::renderMediaContent($mediaList, $multiMediaDisplay, $mediaCaption, $badgeText, $enableLightbox, $textColorClass, $layout, $slideshowOptions) ?>
+                    <?php endif; ?>
+
+                <?php elseif ($layout === 'text-bottom-media-top'): ?>
+                    <!-- Medien oben, Text unten -->
+                    <?php if (!empty($mediaList)): ?>
+                        <div class="uk-margin-medium-bottom">
+                            <?= ThemeHelper::renderMediaContent($mediaList, $multiMediaDisplay, $mediaCaption, $badgeText, $enableLightbox, $textColorClass, $layout, $slideshowOptions) ?>
+                        </div>
+                    <?php endif; ?>
+
+                    <?php if (!empty($title) || !empty($subtitle)): ?>
+                        <div class="<?= $titleMargin ?> <?= $textAlign ?>">
+                            <?php if (!empty($title)): ?>
+                                <<?= $headingLevel ?> class="<?= $headingStyle ?> <?= $titleHandwriting ? 'uk-text-handwriting' : '' ?> <?= $titleSlanted ? 'uk-text-slanted' : '' ?> <?= $textColorClass ?>"><?= htmlspecialchars($title) ?></<?= $headingLevel ?>>
+                            <?php endif; ?>
+                            
+                            <?php if (!empty($subtitle)): ?>
+                                <p class="<?= $subtitleStyle ?> <?= $subtitleHandwriting ? 'uk-text-handwriting' : '' ?> <?= $subtitleSlanted ? 'uk-text-slanted' : '' ?> <?= $textColorClass === 'uk-light' ? 'uk-light' : 'uk-text-muted' ?>" style="margin-top: -0.5rem !important;">
+                                    <?= htmlspecialchars($subtitle) ?>
+                                </p>
+                            <?php endif; ?>
+                        </div>
+                    <?php endif; ?>
+                    
+                    <?php if (!empty($content)): ?>
+                        <div class="uk-text-default <?= $textColorClass ?>">
+                            <?= $content ?>
+                        </div>
+                    <?php endif; ?>
+
                 <?php else: ?>
                     <!-- Text + Medien Layout -->
                     <?php if (!empty($title) || !empty($subtitle)): ?>
@@ -196,7 +257,7 @@ echo ThemeHelper::backendWrapper(true);
                             
                             <?php if (!empty($mediaList)): ?>
                                 <div class="<?= $mediaWidth ?>">
-                                    <?= ThemeHelper::renderMediaContent($mediaList, $multiMediaDisplay, $mediaCaption, $badgeText, $enableLightbox, $textColorClass, $layout) ?>
+                                    <?= ThemeHelper::renderMediaContent($mediaList, $multiMediaDisplay, $mediaCaption, $badgeText, $enableLightbox, $textColorClass, $layout, $slideshowOptions) ?>
                                 </div>
                             <?php endif; ?>
                             
@@ -204,7 +265,7 @@ echo ThemeHelper::backendWrapper(true);
                             <!-- Medien links, Text rechts -->
                             <?php if (!empty($mediaList)): ?>
                                 <div class="<?= $mediaWidth ?>">
-                                    <?= ThemeHelper::renderMediaContent($mediaList, $multiMediaDisplay, $mediaCaption, $badgeText, $enableLightbox, $textColorClass, $layout) ?>
+                                    <?= ThemeHelper::renderMediaContent($mediaList, $multiMediaDisplay, $mediaCaption, $badgeText, $enableLightbox, $textColorClass, $layout, $slideshowOptions) ?>
                                 </div>
                             <?php endif; ?>
                             
