@@ -59,6 +59,7 @@ echo ThemeHelper::backendWrapper(true);
             // Slideshow Options
             $slideshowOptions = [
                 'autoplay' => isset($block['slideshow_autoplay']) && $block['slideshow_autoplay'] === '1',
+                'autoplay_interval' => $block['slideshow_autoplay_interval'] ?? '6000',
                 'animation' => $block['slideshow_animation'] ?? 'slide',
                 'ratio' => $block['slideshow_ratio'] ?? ''
             ];

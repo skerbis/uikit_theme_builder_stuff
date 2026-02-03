@@ -349,7 +349,12 @@ $mform = MForm::factory()
         
         ->addElement('html', '<hr><div class="uk-alert uk-alert-primary"><i class="fas fa-info-circle"></i> Slideshow Einstellungen (werden nur bei Slideshow-Varianten angewendet)</div>')
         
-        ->addCheckboxField("$id.0.slideshow_autoplay", ['1' => 'Autoplay aktivieren (Wechsel alle 6 Sekunden)'], ['label' => 'Autoplay'])
+        ->addCheckboxField("$id.0.slideshow_autoplay", ['1' => 'Autoplay aktivieren'], ['label' => 'Autoplay'])
+        ->addTextField("$id.0.slideshow_autoplay_interval", [
+            'label' => 'Dauer (in ms)',
+            'placeholder' => 'z.B. 6000 für 6 Sekunden',
+            'default-value' => '6000'
+        ])
         ->addSelectField("$id.0.slideshow_animation", [
             'slide' => 'Slide (Schieben)',
             'fade' => 'Fade (Überblenden)',
