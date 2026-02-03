@@ -115,6 +115,32 @@ $mform = MForm::factory()
                 '),
                 'label' => 'Medien links, Text rechts'
             ],
+            'media-top-text-bottom' => [
+                'img' => "data:image/svg+xml;base64," . base64_encode('
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 80" width="120" height="80">
+                        <rect width="120" height="80" fill="#f8f8f8" stroke="#333" stroke-width="2"/>
+                        <rect x="5" y="5" width="110" height="35" fill="#666"/>
+                        <line x1="10" y1="48" x2="70" y2="48" stroke="#999" stroke-width="2"/>
+                        <line x1="10" y1="56" x2="110" y2="56" stroke="#ccc" stroke-width="1.5"/>
+                        <line x1="10" y1="63" x2="95" y2="63" stroke="#ccc" stroke-width="1.5"/>
+                        <line x1="10" y1="70" x2="105" y2="70" stroke="#ccc" stroke-width="1.5"/>
+                    </svg>
+                '),
+                'label' => 'Medien oben, Text unten'
+            ],
+            'text-top-media-bottom' => [
+                'img' => "data:image/svg+xml;base64," . base64_encode('
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 80" width="120" height="80">
+                        <rect width="120" height="80" fill="#f8f8f8" stroke="#333" stroke-width="2"/>
+                        <line x1="10" y1="10" x2="70" y2="10" stroke="#999" stroke-width="2"/>
+                        <line x1="10" y1="18" x2="110" y2="18" stroke="#ccc" stroke-width="1.5"/>
+                        <line x1="10" y1="25" x2="95" y2="25" stroke="#ccc" stroke-width="1.5"/>
+                        <line x1="10" y1="32" x2="105" y2="32" stroke="#ccc" stroke-width="1.5"/>
+                        <rect x="5" y="40" width="110" height="35" fill="#666"/>
+                    </svg>
+                '),
+                'label' => 'Text oben, Medien unten'
+            ],
             'text-only' => [
                 'img' => "data:image/svg+xml;base64," . base64_encode('
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 80" width="120" height="80">
@@ -277,8 +303,64 @@ $mform = MForm::factory()
                     </svg>
                 '),
                 'label' => 'Slideshow'
+            ],
+            'slideshow-thumbs-bottom' => [
+                'img' => "data:image/svg+xml;base64," . base64_encode('
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 50" width="50" height="42">
+                        <rect width="60" height="50" fill="#f8f8f8" stroke="#333" stroke-width="1.5"/>
+                        <rect x="5" y="3" width="50" height="30" fill="#666"/>
+                        <rect x="5" y="36" width="11" height="11" fill="#999" stroke="#333" stroke-width="1"/>
+                        <rect x="17" y="36" width="11" height="11" fill="#ccc" stroke="#999" stroke-width="0.5"/>
+                        <rect x="29" y="36" width="11" height="11" fill="#ccc" stroke="#999" stroke-width="0.5"/>
+                        <rect x="41" y="36" width="11" height="11" fill="#ccc" stroke="#999" stroke-width="0.5"/>
+                        <rect x="53" y="36" width="4" height="11" fill="#ddd" stroke="#999" stroke-width="0.5"/>
+                    </svg>
+                '),
+                'label' => 'Featured + Thumbs unten'
+            ],
+            'slideshow-thumbs-right' => [
+                'img' => "data:image/svg+xml;base64," . base64_encode('
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 50" width="50" height="42">
+                        <rect width="60" height="50" fill="#f8f8f8" stroke="#333" stroke-width="1.5"/>
+                        <rect x="3" y="3" width="38" height="44" fill="#666"/>
+                        <rect x="43" y="3" width="14" height="10" fill="#999" stroke="#333" stroke-width="1"/>
+                        <rect x="43" y="14" width="14" height="10" fill="#ccc" stroke="#999" stroke-width="0.5"/>
+                        <rect x="43" y="25" width="14" height="10" fill="#ccc" stroke="#999" stroke-width="0.5"/>
+                        <rect x="43" y="36" width="14" height="10" fill="#ccc" stroke="#999" stroke-width="0.5"/>
+                    </svg>
+                '),
+                'label' => 'Featured + Thumbs rechts'
+            ],
+            'slideshow-thumbs-left' => [
+                'img' => "data:image/svg+xml;base64," . base64_encode('
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 50" width="50" height="42">
+                        <rect width="60" height="50" fill="#f8f8f8" stroke="#333" stroke-width="1.5"/>
+                        <rect x="19" y="3" width="38" height="44" fill="#666"/>
+                        <rect x="3" y="3" width="14" height="10" fill="#999" stroke="#333" stroke-width="1"/>
+                        <rect x="3" y="14" width="14" height="10" fill="#ccc" stroke="#999" stroke-width="0.5"/>
+                        <rect x="3" y="25" width="14" height="10" fill="#ccc" stroke="#999" stroke-width="0.5"/>
+                        <rect x="3" y="36" width="14" height="10" fill="#ccc" stroke="#999" stroke-width="0.5"/>
+                    </svg>
+                '),
+                'label' => 'Featured + Thumbs links'
             ]
         ], ['label' => '<i class="fas fa-images"></i> Mehrere Medien als:'])
+        
+        ->addCheckboxField("$id.0.slideshow_autoplay", ['1' => 'Slideshow automatisch abspielen'], [
+            'label' => '<i class="fas fa-play-circle"></i> Autoplay:',
+            'help' => 'Slideshow automatisch abspielen (nur für Slideshow-Varianten)',
+            'default-value' => ''
+        ])
+        
+        ->addSelectField("$id.0.slideshow_delay", [
+            '3000' => '3 Sekunden',
+            '4000' => '4 Sekunden',
+            '5000' => '5 Sekunden',
+            '6000' => '6 Sekunden',
+            '7000' => '7 Sekunden',
+            '8000' => '8 Sekunden',
+            '10000' => '10 Sekunden'
+        ], ['label' => '<i class="fas fa-clock"></i> Slideshow-Verzögerung', 'class' => 'selectpicker', 'default-value' => '5000', 'help' => 'Zeit zwischen den Slides (nur bei aktiviertem Autoplay)'])
     );
 
 // MBlock erstellen
