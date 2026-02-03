@@ -355,7 +355,8 @@ $mform = MForm::factory()
             'label' => 'Seitenverhältnis (Ratio)',
             'placeholder' => 'z.B. 16:9, 4:3 oder False',
             'help' => 'Optional. Standard ist meist 16:9 oder angepasst an Inhalt.'
-        ]);
+        ])
+    );
 
 // MBlock erstellen
 $blocks = MBlock::show($id, $mform->show(), [
