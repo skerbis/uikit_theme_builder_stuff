@@ -15,7 +15,17 @@ $subtitle = $data['subtitle'] ?? '';
 $headingLevel = $data['heading_level'] ?? 'h2';
 $headingStyle = $data['heading_style'] ?? 'uk-heading-medium';
 $subtitleStyle = $data['subtitle_style'] ?? 'uk-text-lead';
-$titleMargin = $data['title_margin'] ?? 'uk-margin-medium';
+$titleMargin = $data['title_margin'] ?? 'uk-margin-medium-bottom';
+// Migration: alte allgemeine Margins auf richtungsspezifische Bottom-Margins umschreiben
+$marginMap = [
+    'uk-margin-medium' => 'uk-margin-medium-bottom',
+    'uk-margin-large' => 'uk-margin-large-bottom',
+    'uk-margin' => 'uk-margin-bottom',
+    'uk-margin-small' => 'uk-margin-small-bottom',
+];
+if (isset($marginMap[$titleMargin])) {
+    $titleMargin = $marginMap[$titleMargin];
+}
 $textAlign = $data['text_align'] ?? '';
 $backgroundStyle = $data['background_style'] ?? '';
 $padding = $data['padding'] ?? '';

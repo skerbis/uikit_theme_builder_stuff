@@ -72,14 +72,15 @@ $mform = MForm::factory()
         ])
         
         ->addSelectField("$id.0.title_margin", [
-            'uk-margin-medium' => 'Standard-Abstand',
-            'uk-margin-large' => 'Großer Abstand',
-            'uk-margin' => 'Kleiner Abstand',
-            'uk-margin-small' => 'Sehr kleiner Abstand'
+            'uk-margin-medium-bottom' => 'Standard-Abstand',
+            'uk-margin-large-bottom' => 'Großer Abstand',
+            'uk-margin-bottom' => 'Kleiner Abstand',
+            'uk-margin-small-bottom' => 'Sehr kleiner Abstand',
+            'uk-margin-remove-bottom' => 'Kein Abstand'
         ], [
             'label' => '<i class="fas fa-arrows-alt-v"></i> Abstand nach Überschrift',
             'class' => 'selectpicker',
-            'default-value' => 'uk-margin-medium',
+            'default-value' => 'uk-margin-medium-bottom',
             'help' => 'Abstand zwischen Überschrift und folgendem Inhalt'
         ])
         
