@@ -1,5 +1,6 @@
 <?php
 use UikitThemeBuilder\DomainContext;
+use UikitThemeBuilder\ThemeHelper;
 
 // Hole Daten als Array (MForm speichert als Array)
 $dataArray = rex_var::toArray("REX_VALUE[1]");
@@ -31,6 +32,9 @@ $backgroundStyle = $data['background_style'] ?? '';
 $padding = $data['padding'] ?? '';
 $container = $data['container'] ?? '';
 
+// Textfarbe basierend auf Hintergrund
+$textColorClass = ThemeHelper::getTextColorForBackground($backgroundStyle);
+
 // Wenn kein Text, dann nichts ausgeben
 if (empty(trim($headingText))) {
     return;
@@ -48,6 +52,9 @@ if ($backgroundStyle) {
 }
 if ($padding) {
     $sectionClasses[] = $padding;
+}
+if ($textColorClass) {
+    $sectionClasses[] = $textColorClass;
 }
 
 $sectionClassStr = !empty($sectionClasses) ? ' class="' . implode(' ', $sectionClasses) . '"' : '';
