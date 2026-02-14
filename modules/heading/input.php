@@ -102,25 +102,15 @@ $mform = MForm::factory()
         ])
         
         ->addRadioImgField("$id.0.padding", [
-            'uk-padding-large' => [
+            '' => [
                 'img' => "data:image/svg+xml;base64," . base64_encode('
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 50" width="50" height="42">
                         <rect width="60" height="50" fill="#f8f8f8"/>
                         <rect x="3" y="3" width="54" height="44" fill="#fff" stroke="#999" stroke-width="1" rx="2"/>
-                        <rect x="11" y="11" width="38" height="28" fill="#ddd" rx="1"/>
+                        <rect x="4" y="4" width="52" height="42" fill="#ddd" rx="1"/>
                     </svg>
                 '),
-                'label' => 'Groß'
-            ],
-            'uk-padding' => [
-                'img' => "data:image/svg+xml;base64," . base64_encode('
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 50" width="50" height="42">
-                        <rect width="60" height="50" fill="#f8f8f8"/>
-                        <rect x="3" y="3" width="54" height="44" fill="#fff" stroke="#999" stroke-width="1" rx="2"/>
-                        <rect x="8" y="8" width="44" height="34" fill="#ddd" rx="1"/>
-                    </svg>
-                '),
-                'label' => 'Mittel'
+                'label' => 'Kein Padding'
             ],
             'uk-padding-small' => [
                 'img' => "data:image/svg+xml;base64," . base64_encode('
@@ -132,15 +122,25 @@ $mform = MForm::factory()
                 '),
                 'label' => 'Klein'
             ],
-            '' => [
+            'uk-padding' => [
                 'img' => "data:image/svg+xml;base64," . base64_encode('
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 50" width="50" height="42">
                         <rect width="60" height="50" fill="#f8f8f8"/>
                         <rect x="3" y="3" width="54" height="44" fill="#fff" stroke="#999" stroke-width="1" rx="2"/>
-                        <rect x="4" y="4" width="52" height="42" fill="#ddd" rx="1"/>
+                        <rect x="8" y="8" width="44" height="34" fill="#ddd" rx="1"/>
                     </svg>
                 '),
-                'label' => 'Kein Padding'
+                'label' => 'Mittel'
+            ],
+            'uk-padding-large' => [
+                'img' => "data:image/svg+xml;base64," . base64_encode('
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 50" width="50" height="42">
+                        <rect width="60" height="50" fill="#f8f8f8"/>
+                        <rect x="3" y="3" width="54" height="44" fill="#fff" stroke="#999" stroke-width="1" rx="2"/>
+                        <rect x="11" y="11" width="38" height="28" fill="#ddd" rx="1"/>
+                    </svg>
+                '),
+                'label' => 'Groß'
             ]
         ], ['label' => '<i class="fas fa-expand"></i> Sektion-Abstand'])
         
