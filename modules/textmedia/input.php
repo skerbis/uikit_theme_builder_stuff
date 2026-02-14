@@ -71,11 +71,12 @@ $mform = MForm::factory()
         ], ['label' => '<i class="fas fa-text-width"></i> Untertitel-Größe', 'class' => 'selectpicker', 'default-value' => 'uk-text-lead'])
         
         ->addSelectField("$id.0.title_margin", [
-            'uk-margin-medium' => 'Standard-Abstand',
-            'uk-margin-large' => 'Großer Abstand',
-            'uk-margin' => 'Kleiner Abstand',
-            'uk-margin-small' => 'Sehr kleiner Abstand'
-        ], ['label' => '<i class="fas fa-arrows-alt-v"></i> Abstand nach Überschrift', 'class' => 'selectpicker', 'default-value' => 'uk-margin-medium', 'help' => 'Abstand zwischen Überschrift und Inhalt'])
+            'uk-margin-remove-bottom' => 'Kein Abstand',
+            'uk-margin-small-bottom' => 'Sehr kleiner Abstand',
+            'uk-margin-bottom' => 'Kleiner Abstand',
+            'uk-margin-medium-bottom' => 'Standard-Abstand',
+            'uk-margin-large-bottom' => 'Großer Abstand'
+        ], ['label' => '<i class="fas fa-arrows-alt-v"></i> Abstand nach Überschrift', 'class' => 'selectpicker', 'default-value' => 'uk-margin-medium-bottom', 'help' => 'Abstand zwischen Überschrift und Inhalt'])
         
         ->addSelectField("$id.0.text_align", [
             '' => 'Linksbündig (Standard)',
@@ -385,6 +386,22 @@ $main = MForm::factory()
         ->addRadioColorField("2.0.background_style", DomainContext::getBackgroundOptions(), [
             'label' => '<i class="fas fa-palette"></i> Sektion-Hintergrund'
         ])
+        
+        ->addSelectField("2.0.section_margin_top", [
+            '' => 'Kein Abstand',
+            'uk-margin-small-top' => 'Sehr klein',
+            'uk-margin-top' => 'Klein',
+            'uk-margin-medium-top' => 'Mittel',
+            'uk-margin-large-top' => 'Groß'
+        ], ['label' => '<i class="fas fa-arrow-up"></i> Abstand oben (Sektion)', 'class' => 'selectpicker', 'default-value' => ''])
+        
+        ->addSelectField("2.0.section_margin_bottom", [
+            '' => 'Kein Abstand',
+            'uk-margin-small-bottom' => 'Sehr klein',
+            'uk-margin-bottom' => 'Klein',
+            'uk-margin-medium-bottom' => 'Mittel',
+            'uk-margin-large-bottom' => 'Groß'
+        ], ['label' => '<i class="fas fa-arrow-down"></i> Abstand unten (Sektion)', 'class' => 'selectpicker', 'default-value' => ''])
         
         ->addRadioImgField("2.0.padding", [
             'uk-padding-large' => [

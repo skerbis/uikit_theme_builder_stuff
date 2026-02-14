@@ -16,6 +16,8 @@ $backgroundStyle = $settings['background_style'] ?? '';
 $padding = $settings['padding'] ?? 'uk-padding';
 $container = $settings['container'] ?? '';
 $gap = $settings['gap'] ?? 'uk-margin-medium';
+$sectionMarginTop = $settings['section_margin_top'] ?? '';
+$sectionMarginBottom = $settings['section_margin_bottom'] ?? '';
 
 $textColorClass = ThemeHelper::getTextColorForBackground($backgroundStyle);
 
@@ -26,7 +28,7 @@ if (!empty($textMediaBlocks) && is_array($textMediaBlocks)):
 echo ThemeHelper::backendWrapper(true);
 ?>
 
-<div class="<?= !empty($backgroundStyle) ? $backgroundStyle : '' ?> <?= !empty($padding) ? $padding : '' ?> uk-margin-medium">
+<div class="<?= !empty($backgroundStyle) ? $backgroundStyle : '' ?> <?= !empty($padding) ? $padding : '' ?> <?= !empty($sectionMarginTop) ? $sectionMarginTop : '' ?> <?= !empty($sectionMarginBottom) ? $sectionMarginBottom : '' ?>">
     <?php if (!empty($container)): ?>
     <div class="<?= $container ?>">
     <?php endif; ?>
@@ -52,7 +54,17 @@ echo ThemeHelper::backendWrapper(true);
             $headingLevel = $block['heading_level'] ?? 'h3';
             $headingStyle = $block['heading_style'] ?? 'uk-heading-medium';
             $subtitleStyle = $block['subtitle_style'] ?? 'uk-text-lead uk-text-large';
-            $titleMargin = $block['title_margin'] ?? 'uk-margin-medium';
+            $titleMargin = $block['title_margin'] ?? 'uk-margin-medium-bottom';
+            // Migration: alte allgemeine Margins auf Bottom-Margins
+            $marginMap = [
+                'uk-margin-medium' => 'uk-margin-medium-bottom',
+                'uk-margin-large' => 'uk-margin-large-bottom',
+                'uk-margin' => 'uk-margin-bottom',
+                'uk-margin-small' => 'uk-margin-small-bottom',
+            ];
+            if (isset($marginMap[$titleMargin])) {
+                $titleMargin = $marginMap[$titleMargin];
+            }
             $textAlign = $block['text_align'] ?? '';
             $enableLightbox = isset($block['enable_lightbox']) && $block['enable_lightbox'] === '1';
             
