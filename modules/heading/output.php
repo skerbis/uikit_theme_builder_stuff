@@ -56,6 +56,9 @@ if ($padding) {
 if ($textColorClass) {
     $sectionClasses[] = $textColorClass;
 }
+if ($titleMargin) {
+    $sectionClasses[] = $titleMargin;
+}
 
 $sectionClassStr = !empty($sectionClasses) ? ' class="' . implode(' ', $sectionClasses) . '"' : '';
 $containerClassStr = $container ? ' class="' . $container . '"' : '';
@@ -67,9 +70,6 @@ if ($headingStyle) {
 }
 if ($textAlign) {
     $headingClasses[] = $textAlign;
-}
-if ($titleMargin) {
-    $headingClasses[] = $titleMargin;
 }
 
 $headingClassStr = !empty($headingClasses) ? ' class="' . implode(' ', $headingClasses) . '"' : '';

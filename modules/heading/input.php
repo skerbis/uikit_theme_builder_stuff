@@ -42,6 +42,19 @@ $mform = MForm::factory()
             'label' => '<i class="fas fa-text-height"></i> Untertitel (optional)',
             'placeholder' => 'z.B. "Entspannung & Wellness" oder "Für Ihren perfekten Aufenthalt"'
         ])
+        
+        ->addSelectField("$id.0.title_margin", [
+            'uk-margin-remove-bottom' => 'Kein Abstand',
+            'uk-margin-small-bottom' => 'Sehr kleiner Abstand',
+            'uk-margin-bottom' => 'Kleiner Abstand',
+            'uk-margin-medium-bottom' => 'Standard-Abstand',
+            'uk-margin-large-bottom' => 'Großer Abstand'
+        ], [
+            'label' => '<i class="fas fa-arrows-alt-v"></i> Abstand nach Überschrift',
+            'class' => 'selectpicker',
+            'default-value' => 'uk-margin-medium-bottom',
+            'help' => 'Abstand zwischen Überschrift-Sektion und folgendem Inhalt'
+        ])
     , true) // Aktiver Tab
     
     // Tab 2: Styling
@@ -69,19 +82,6 @@ $mform = MForm::factory()
             'label' => '<i class="fas fa-text-width"></i> Untertitel-Größe',
             'class' => 'selectpicker',
             'default-value' => 'uk-text-lead'
-        ])
-        
-        ->addSelectField("$id.0.title_margin", [
-            'uk-margin-medium-bottom' => 'Standard-Abstand',
-            'uk-margin-large-bottom' => 'Großer Abstand',
-            'uk-margin-bottom' => 'Kleiner Abstand',
-            'uk-margin-small-bottom' => 'Sehr kleiner Abstand',
-            'uk-margin-remove-bottom' => 'Kein Abstand'
-        ], [
-            'label' => '<i class="fas fa-arrows-alt-v"></i> Abstand nach Überschrift',
-            'class' => 'selectpicker',
-            'default-value' => 'uk-margin-medium-bottom',
-            'help' => 'Abstand zwischen Überschrift und folgendem Inhalt'
         ])
         
         ->addSelectField("$id.0.text_align", [
