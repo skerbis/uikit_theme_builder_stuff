@@ -43,17 +43,28 @@ $mform = MForm::factory()
             'placeholder' => 'z.B. "Entspannung & Wellness" oder "Für Ihren perfekten Aufenthalt"'
         ])
         
-        ->addSelectField("$id.0.title_margin", [
-            'uk-margin-remove-bottom' => 'Kein Abstand',
-            'uk-margin-small-bottom' => 'Sehr kleiner Abstand',
-            'uk-margin-bottom' => 'Kleiner Abstand',
-            'uk-margin-medium-bottom' => 'Standard-Abstand',
-            'uk-margin-large-bottom' => 'Großer Abstand'
+        ->addSelectField("$id.0.section_margin_top", [
+            'uk-margin-remove-top' => 'Kein Abstand',
+            'uk-margin-small-top' => 'Klein (Standard)',
+            'uk-margin-top' => 'Mittel',
+            'uk-margin-medium-top' => 'Groß',
+            'uk-margin-large-top' => 'Sehr groß'
         ], [
-            'label' => '<i class="fas fa-arrows-alt-v"></i> Abstand nach Überschrift',
+            'label' => '<i class="fas fa-arrow-up"></i> Abstand oben',
             'class' => 'selectpicker',
-            'default-value' => 'uk-margin-medium-bottom',
-            'help' => 'Abstand zwischen Überschrift-Sektion und folgendem Inhalt'
+            'default-value' => 'uk-margin-small-top'
+        ])
+        
+        ->addSelectField("$id.0.section_margin_bottom", [
+            'uk-margin-remove-bottom' => 'Kein Abstand',
+            'uk-margin-small-bottom' => 'Klein (Standard)',
+            'uk-margin-bottom' => 'Mittel',
+            'uk-margin-medium-bottom' => 'Groß',
+            'uk-margin-large-bottom' => 'Sehr groß'
+        ], [
+            'label' => '<i class="fas fa-arrow-down"></i> Abstand unten',
+            'class' => 'selectpicker',
+            'default-value' => 'uk-margin-small-bottom'
         ])
     , true) // Aktiver Tab
     

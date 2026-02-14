@@ -16,16 +16,23 @@ $subtitle = $data['subtitle'] ?? '';
 $headingLevel = $data['heading_level'] ?? 'h2';
 $headingStyle = $data['heading_style'] ?? 'uk-heading-medium';
 $subtitleStyle = $data['subtitle_style'] ?? 'uk-text-lead';
-$titleMargin = $data['title_margin'] ?? 'uk-margin-medium-bottom';
-// Migration: alte allgemeine Margins auf richtungsspezifische Bottom-Margins umschreiben
-$marginMap = [
-    'uk-margin-medium' => 'uk-margin-medium-bottom',
-    'uk-margin-large' => 'uk-margin-large-bottom',
-    'uk-margin' => 'uk-margin-bottom',
-    'uk-margin-small' => 'uk-margin-small-bottom',
-];
-if (isset($marginMap[$titleMargin])) {
-    $titleMargin = $marginMap[$titleMargin];
+$sectionMarginTop = $data['section_margin_top'] ?? 'uk-margin-small-top';
+$sectionMarginBottom = $data['section_margin_bottom'] ?? 'uk-margin-small-bottom';
+// Migration: alte title_margin Werte
+if (isset($data['title_margin'])) {
+    $oldMargin = $data['title_margin'];
+    $migrationMap = [
+        'uk-margin-medium' => 'uk-margin-medium-bottom',
+        'uk-margin-large' => 'uk-margin-large-bottom',
+        'uk-margin' => 'uk-margin-bottom',
+        'uk-margin-small' => 'uk-margin-small-bottom',
+        'uk-margin-medium-bottom' => 'uk-margin-medium-bottom',
+        'uk-margin-large-bottom' => 'uk-margin-large-bottom',
+        'uk-margin-bottom' => 'uk-margin-bottom',
+        'uk-margin-small-bottom' => 'uk-margin-small-bottom',
+        'uk-margin-remove-bottom' => 'uk-margin-remove-bottom',
+    ];
+    $sectionMarginBottom = $migrationMap[$oldMargin] ?? 'uk-margin-small-bottom';
 }
 $textAlign = $data['text_align'] ?? '';
 $backgroundStyle = $data['background_style'] ?? '';
@@ -56,8 +63,11 @@ if ($padding) {
 if ($textColorClass) {
     $sectionClasses[] = $textColorClass;
 }
-if ($titleMargin) {
-    $sectionClasses[] = $titleMargin;
+if ($sectionMarginTop) {
+    $sectionClasses[] = $sectionMarginTop;
+}
+if ($sectionMarginBottom) {
+    $sectionClasses[] = $sectionMarginBottom;
 }
 
 $sectionClassStr = !empty($sectionClasses) ? ' class="' . implode(' ', $sectionClasses) . '"' : '';
@@ -71,6 +81,7 @@ if ($headingStyle) {
 if ($textAlign) {
     $headingClasses[] = $textAlign;
 }
+$headingClasses[] = 'uk-margin-remove-bottom';
 
 $headingClassStr = !empty($headingClasses) ? ' class="' . implode(' ', $headingClasses) . '"' : '';
 
@@ -92,7 +103,6 @@ $subtitleClassStr = !empty($subtitleClasses) ? ' class="' . implode(' ', $subtit
     <?php endif; ?>
         
         <<?= $headingLevel ?><?= $headingClassStr ?>><?= nl2br(htmlspecialchars($headingText)) ?></<?= $headingLevel ?>>
-        
         <?php if ($subtitle): ?>
         <div<?= $subtitleClassStr ?>><?= nl2br(htmlspecialchars($subtitle)) ?></div>
         <?php endif; ?>
